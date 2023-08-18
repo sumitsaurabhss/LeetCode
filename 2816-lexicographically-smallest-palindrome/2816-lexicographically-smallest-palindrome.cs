@@ -1,6 +1,7 @@
 public class Solution {
     public string MakeSmallestPalindrome(string s) {
-        StringBuilder str = new StringBuilder(s);
+        //StringBuilder str = new StringBuilder(s);
+        char[] str = s.ToCharArray();
         int l = 0, r = s.Length-1;
         while (l < r) {
             if(str[l] < str[r])
@@ -10,7 +11,7 @@ public class Solution {
             l++;
             r--;
         }
-        s = str.ToString();
+        s = new string(str);
         return s;
     }
 }
