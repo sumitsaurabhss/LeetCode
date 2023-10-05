@@ -17,20 +17,37 @@
 //     }
 // }
 
+// Using HashSet and IList method
+// public class Solution {
+//     public IList<int> MajorityElement(int[] nums) {
+//         int n = nums.Length;
+//         int t = n / 3;
+//         Dictionary<int, int> dictionary = new Dictionary<int, int>();
+//         IList<int> list = new List<int>();
+//         foreach(int num in nums) {
+//             if(dictionary.ContainsKey(num))  dictionary[num]++;
+//             else  dictionary.Add(num, 1);
+//         }
+//         foreach(var kvp in dictionary) {
+//             if(kvp.Value > t)  list.Add(kvp.Key);
+//         }
+//         return list;
+//     }
+// }
+
 // Using HashSet method
 public class Solution {
     public IList<int> MajorityElement(int[] nums) {
         int n = nums.Length;
         int t = n / 3;
         Dictionary<int, int> dictionary = new Dictionary<int, int>();
-        IList<int> list = new List<int>();
         foreach(int num in nums) {
             if(dictionary.ContainsKey(num))  dictionary[num]++;
             else  dictionary.Add(num, 1);
         }
         foreach(var kvp in dictionary) {
-            if(kvp.Value > t)  list.Add(kvp.Key);
+            if(kvp.Value <= t)  dictionary.Remove(kvp.Key);
         }
-        return list;
+        return dictionary.Keys.ToList();
     }
 }
